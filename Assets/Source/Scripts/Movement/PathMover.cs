@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class PathMover : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private PlayerAnimator animator;
     [SerializeField, Range(0, 100)] private float turnSpeed = 5f;
     private Path path;
     private int currentWaypoint = 0;
@@ -15,10 +16,11 @@ public class PathMover : MonoBehaviour
     public Path Path { set { path = value; } }
     private void Start()
     {
-        sqrStopDistance = agent.stoppingDistance * agent.stoppingDistance;
+        sqrStopDistance = 2f;
     }
     private void Update()
     {
+        animator.SetSpeed(GetAgentSpeed());
         if (path == null) return;
         agent.SetDestination(path[currentWaypoint].transform.position);
         if (ReachedWayPoint(path[currentWaypoint].Point))
@@ -41,7 +43,7 @@ public class PathMover : MonoBehaviour
         => (currentWaypoint + 1 < path.Lenght);
 
     private bool ReachedWayPoint(Vector3 point)
-        => Vector3.SqrMagnitude(transform.position - point) > sqrStopDistance;
+        => Vector3.SqrMagnitude(transform.position - point) <= sqrStopDistance;
 
     private IEnumerator RotateToForward()
     {
@@ -51,5 +53,9 @@ public class PathMover : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, target, Time.deltaTime * turnSpeed);
             yield return null;
         }
+    }
+    private float GetAgentSpeed()
+    {
+        return agent.velocity.sqrMagnitude / (agent.speed * agent.speed);
     }
 }
