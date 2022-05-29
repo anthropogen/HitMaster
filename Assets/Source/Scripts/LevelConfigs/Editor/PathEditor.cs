@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using System.Reflection;
 
 [CustomEditor(typeof(Path))]
 public class PathEditor : Editor
@@ -12,7 +13,7 @@ public class PathEditor : Editor
             var path = (Path)target;
             var points = path.GetComponentsInChildren<Waypoint>();
             var type = path.GetType();
-            var property = type.GetProperty("Waypoints");
+            var property = type.GetField("waypoints", BindingFlags.Instance | BindingFlags.NonPublic);
             property.SetValue(path, points);
             EditorUtility.SetDirty(target);
         }

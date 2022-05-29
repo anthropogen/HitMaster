@@ -3,20 +3,23 @@ using UnityEngine;
 
 public class Path : MonoBehaviour
 {
-    public Waypoint[] Waypoints { get; private set; }
+    [SerializeField] private Waypoint[] waypoints;
+    public int Lenght => waypoints.Length;
+    public Waypoint this[int i]
+    { get { return waypoints[i]; } }
 
     private void OnDrawGizmos()
     {
-        if (Waypoints == null) return;
-        if (Waypoints.Length < 2) return;
+        if (waypoints == null) return;
+        if (waypoints.Length < 2) return;
         Gizmos.color = Color.yellow;
-        for (int i = 1; i < Waypoints.Length; i++)
+        for (int i = 1; i < waypoints.Length; i++)
         {
             Handles.color = Color.black;
-            Gizmos.DrawLine(Waypoints[i - 1].Point, Waypoints[i].Point);
-            Handles.Label(GetLabelPos(Waypoints[i - 1].Point), $"{i - 1}");
+            Gizmos.DrawLine(waypoints[i - 1].Point, waypoints[i].Point);
+            Handles.Label(GetLabelPos(waypoints[i - 1].Point), $"{i - 1}");
         }
-        Handles.Label(GetLabelPos(Waypoints[Waypoints.Length - 1].Point), $"{Waypoints.Length - 1}");
+        Handles.Label(GetLabelPos(waypoints[waypoints.Length - 1].Point), $"{waypoints.Length - 1}");
     }
     private Vector3 GetLabelPos(Vector3 pos)
     {
