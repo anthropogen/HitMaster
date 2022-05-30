@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 35
   iteractForce: 50
-  lifeTime: 100
+  lifeTime: 3
   rb: {fileID: 1352754650029299785}
 --- !u!1001 &1352754650168766379
 PrefabInstance:

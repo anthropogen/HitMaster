@@ -6,6 +6,7 @@ public class Platform : MonoBehaviour
 {
     [SerializeField] private List<Enemy> enemies;
     [field: SerializeField] public Path Path { get; private set; }
+    [field: SerializeField] public PlatformType Type { get; private set; }
     public event Action<Platform> AllEnemiesDiedOnPlatform;
     public bool Clear => enemies.Count == 0;
     private void OnEnable()

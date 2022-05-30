@@ -3,12 +3,19 @@ using UnityEngine;
 
 public class PlatformMover : MonoBehaviour
 {
-    [SerializeField] private Platform[] platforms;
+    [SerializeField] private LevelConfig levelConfig;
     [SerializeField] private Game game;
     [SerializeField] private Player player;
+    public event Action PlayerReachedFinish;
+    private Platform[] platforms;
     private int currentPlatform = 0;
+    private void Awake()
+    {
+        platforms = levelConfig.Platforms;
+    }
     private void OnEnable()
     {
+        player.PathMover.FinishedPath += CheckPlatform;
         game.GameStarted += PlayerMoveToNextPlatform;
         foreach (var p in platforms)
         {
@@ -16,9 +23,9 @@ public class PlatformMover : MonoBehaviour
         }
     }
 
-
     private void OnDisable()
     {
+        player.PathMover.FinishedPath -= CheckPlatform;
         game.GameStarted -= PlayerMoveToNextPlatform;
         foreach (var p in platforms)
         {
@@ -32,11 +39,23 @@ public class PlatformMover : MonoBehaviour
     private void PlayerMoveToNextPlatform()
     {
         player.PathMover.Path = GetPathToNextPlatform();
-        currentPlatform++;
     }
     private void TryMoveToNextPlatform(Platform platform)
     {
         if (platforms[currentPlatform] == platform)
             PlayerMoveToNextPlatform();
+    }
+    private void CheckPlatform()
+    {
+        currentPlatform++;
+        if (platforms[currentPlatform].Type == PlatformType.Finish)
+        {
+            PlayerReachedFinish?.Invoke();
+            return;
+        }
+        if (platforms[currentPlatform].Clear)
+        {
+            PlayerMoveToNextPlatform();
+        }
     }
 }

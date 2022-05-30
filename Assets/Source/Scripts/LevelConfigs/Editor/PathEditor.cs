@@ -14,10 +14,10 @@ public class PathEditor : Editor
             var points = path.GetComponentsInChildren<Waypoint>();
             var viewpoint = path.GetComponentInChildren<Viewpoint>();
             var type = path.GetType();
-            var waypointsProp = type.GetField("waypoints", BindingFlags.Instance | BindingFlags.NonPublic);
-            waypointsProp.SetValue(path, points);
-            var viewpointProp = type.GetField("viewpoint", BindingFlags.Instance | BindingFlags.NonPublic);
-            viewpointProp.SetValue(path, viewpoint);
+            var waypointsField = type.GetField("waypoints", BindingFlags.Instance | BindingFlags.NonPublic);
+            waypointsField.SetValue(path, points);
+            var viewpointField = type.GetField("viewpoint", BindingFlags.Instance | BindingFlags.NonPublic);
+            viewpointField.SetValue(path, viewpoint);
             EditorUtility.SetDirty(target);
         }
     }
