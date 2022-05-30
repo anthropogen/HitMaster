@@ -4,6 +4,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField, Range(0, 100)] private float speed = 5;
+    [SerializeField, Range(0, 1000)] private float iteractForce = 5;
     [SerializeField, Range(0, 100)] private float lifeTime;
     [SerializeField] private Rigidbody rb;
     private float deathTime;
@@ -23,6 +24,12 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.TryGetComponent(out PartBody partBody))
+        {
+            var direction = (collision.gameObject.transform.position - transform.position).normalized;
+
+            partBody.IteractWithProjectile(direction * iteractForce);
+        }
         DisableProjectile();
     }
 
