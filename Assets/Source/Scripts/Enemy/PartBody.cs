@@ -10,9 +10,9 @@ public class PartBody : MonoBehaviour
         body = GetComponent<Rigidbody>();
     }
 
-    public void IteractWithProjectile(Vector3 direction)
+    public void IteractWithProjectile(Vector3 direction, float damage)
     {
-        enemy.Death();
+        enemy.Heatlh.ApplyDamage(damage);
         body.AddForce(direction, ForceMode.VelocityChange);
     }
 }

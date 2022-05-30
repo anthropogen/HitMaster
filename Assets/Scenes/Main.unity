@@ -850,17 +850,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5312c16563b9cac429e605f5e77fb58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &927777582 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6373313876744241644, guid: e63313795e7262c41a349630d09081f6, type: 3}
-  m_PrefabInstance: {fileID: 6373313876555219650}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32b505dedec2b494a81c65bb21f96b37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,8 +927,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.17191944, y: -0.000000021484828, z: 0.0000000037494856, w: 0.98511106}
-  m_LocalPosition: {x: 0.00000041040667, y: 6.987195, z: -10.618875}
+  m_LocalRotation: {x: 0.17191944, y: 0.00000002148482, z: -0.000000003749484, w: 0.98511106}
+  m_LocalPosition: {x: -0.0000004104065, y: 6.987195, z: -10.618875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1434,7 +1423,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -0.00013312424
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6373313877344374029, guid: e63313795e7262c41a349630d09081f6, type: 3}
+    - {fileID: 6373313876744241644, guid: e63313795e7262c41a349630d09081f6, type: 3}
+    - {fileID: 6373313876823029453, guid: e63313795e7262c41a349630d09081f6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e63313795e7262c41a349630d09081f6, type: 3}
 --- !u!4 &1039160882 stripped
 Transform:
@@ -1683,8 +1675,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143320010}
-  m_LocalRotation: {x: 0.17191944, y: -0.000000021484828, z: 0.0000000037494856, w: 0.98511106}
-  m_LocalPosition: {x: 0.00000041040667, y: 6.987195, z: -10.618875}
+  m_LocalRotation: {x: 0.17191944, y: 0.00000002148482, z: -0.000000003749484, w: 0.98511106}
+  m_LocalPosition: {x: -0.0000004104065, y: 6.987195, z: -10.618875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1803321699}
@@ -2386,7 +2378,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -0.0001331245
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6373313877344374029, guid: e63313795e7262c41a349630d09081f6, type: 3}
+    - {fileID: 6373313876823029453, guid: e63313795e7262c41a349630d09081f6, type: 3}
+    - {fileID: 6373313876744241644, guid: e63313795e7262c41a349630d09081f6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e63313795e7262c41a349630d09081f6, type: 3}
 --- !u!4 &1628738975 stripped
 Transform:
@@ -3014,7 +3009,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.x
       value: 0.000119894205
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6373313877344374029, guid: e63313795e7262c41a349630d09081f6, type: 3}
+    - {fileID: 6373313876823029453, guid: e63313795e7262c41a349630d09081f6, type: 3}
+    - {fileID: 6373313876744241644, guid: e63313795e7262c41a349630d09081f6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e63313795e7262c41a349630d09081f6, type: 3}
 --- !u!1001 &6665333024402513466
 PrefabInstance:
@@ -3153,9 +3151,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8708848798088440889, guid: cf861f9208077fb40bff7d309a16f669, type: 3}
+      propertyPath: enemies.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8708848798088440889, guid: cf861f9208077fb40bff7d309a16f669, type: 3}
       propertyPath: enemies.Array.data[0]
       value: 
-      objectReference: {fileID: 927777582}
+      objectReference: {fileID: 0}
     - target: {fileID: 8708848798088440895, guid: cf861f9208077fb40bff7d309a16f669, type: 3}
       propertyPath: m_Name
       value: StartPlatform

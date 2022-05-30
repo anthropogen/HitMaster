@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
     [SerializeField, Range(0, 100)] private float speed = 5;
     [SerializeField, Range(0, 1000)] private float iteractForce = 5;
     [SerializeField, Range(0, 100)] private float lifeTime;
+    [SerializeField, Range(0, 100)] private float damage;
     [SerializeField] private Rigidbody rb;
     private float deathTime;
     private void OnEnable()
@@ -28,7 +29,7 @@ public class Projectile : MonoBehaviour
         {
             var direction = (collision.gameObject.transform.position - transform.position).normalized;
 
-            partBody.IteractWithProjectile(direction * iteractForce);
+            partBody.IteractWithProjectile(direction * iteractForce, damage);
         }
         DisableProjectile();
     }
