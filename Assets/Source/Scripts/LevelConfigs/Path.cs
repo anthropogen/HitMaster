@@ -4,6 +4,7 @@ using UnityEngine;
 public class Path : MonoBehaviour
 {
     [SerializeField] private Waypoint[] waypoints;
+    [SerializeField] private Viewpoint viewpoint;
     public int Lenght => waypoints.Length;
     public Waypoint this[int i]
     { get { return waypoints[i]; } }
@@ -21,8 +22,9 @@ public class Path : MonoBehaviour
         }
         Handles.Label(GetLabelPos(waypoints[waypoints.Length - 1].Point), $"{waypoints.Length - 1}");
     }
-    private Vector3 GetLabelPos(Vector3 pos)
-    {
-        return new Vector3(pos.x, pos.y + .5f, pos.z);
-    }
+    public static Vector3 GetLabelPos(Vector3 pos)
+        => new Vector3(pos.x, pos.y + .5f, pos.z);
+
+    public Vector3 GetLookDirection()
+        => viewpoint.Point - waypoints[waypoints.Length - 1].Point;
 }

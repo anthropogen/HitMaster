@@ -21,7 +21,10 @@ public class PathMover : MonoBehaviour
     private void Update()
     {
         animator.SetSpeed(GetAgentSpeed());
-        if (path == null) return;
+        if (path == null)
+        {
+            return;
+        }
         agent.SetDestination(path[currentWaypoint].transform.position);
         if (ReachedWayPoint(path[currentWaypoint].Point))
         {
@@ -31,7 +34,7 @@ public class PathMover : MonoBehaviour
             }
             else
             {
-                StartCoroutine(RotateToForward());
+                StartCoroutine(RotateToLookPoint(path));
                 currentWaypoint = 0;
                 path = null;
                 FinishedPath?.Invoke();
@@ -45,9 +48,11 @@ public class PathMover : MonoBehaviour
     private bool ReachedWayPoint(Vector3 point)
         => Vector3.SqrMagnitude(transform.position - point) <= sqrStopDistance;
 
-    private IEnumerator RotateToForward()
+    private IEnumerator RotateToLookPoint(Path path)
     {
-        Quaternion target = Quaternion.Euler(0, 0, 0);
+        var dir = path.GetLookDirection();
+        dir.y = 0;
+        Quaternion target = Quaternion.LookRotation(dir);
         while (transform.rotation != target)
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, target, Time.deltaTime * turnSpeed);

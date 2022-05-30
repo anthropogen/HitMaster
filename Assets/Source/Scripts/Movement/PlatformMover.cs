@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlatformMover : MonoBehaviour
@@ -9,10 +10,20 @@ public class PlatformMover : MonoBehaviour
     private void OnEnable()
     {
         game.GameStarted += PlayerMoveToNextPlatform;
+        foreach (var p in platforms)
+        {
+            p.AllEnemiesDiedOnPlatform += TryMoveToNextPlatform;
+        }
     }
+
+
     private void OnDisable()
     {
         game.GameStarted -= PlayerMoveToNextPlatform;
+        foreach (var p in platforms)
+        {
+            p.AllEnemiesDiedOnPlatform -= TryMoveToNextPlatform;
+        }
     }
     public Path GetPathToNextPlatform()
     {
@@ -22,5 +33,10 @@ public class PlatformMover : MonoBehaviour
     {
         player.PathMover.Path = GetPathToNextPlatform();
         currentPlatform++;
+    }
+    private void TryMoveToNextPlatform(Platform platform)
+    {
+        if (platforms[currentPlatform] == platform)
+            PlayerMoveToNextPlatform();
     }
 }
