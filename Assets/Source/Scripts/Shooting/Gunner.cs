@@ -5,6 +5,7 @@ public class Gunner : MonoBehaviour
     [SerializeField] private Gun gun;
     [SerializeField] private GameFactory factory;
     [SerializeField, Range(0, 100)] float pointDistance;
+    [SerializeField, Range(0, 180)] private float maxShootAngle;
     private Camera cam;
     private void Start()
     {
@@ -18,15 +19,20 @@ public class Gunner : MonoBehaviour
         RaycastHit hit;
         if (Input.GetMouseButtonDown(0))
         {
+            Vector3 point;
             Vector3 direction;
             if (Physics.Raycast(ray, out hit))
             {
-                direction = hit.point - gun.ShootPos;
+                point = hit.point;
             }
             else
             {
-                direction = ray.GetPoint(pointDistance) - gun.ShootPos;
+                point = ray.GetPoint(pointDistance);
             }
+            var angle = Vector3.SignedAngle(point - transform.position, transform.forward, Vector3.up);
+            if ((Mathf.Abs(angle)) > maxShootAngle)
+                return;
+            direction = point - gun.ShootPos;
             Quaternion rotation = Quaternion.LookRotation(direction);
             factory.BulletPool.GetAt(gun.ShootPos, rotation);
 
