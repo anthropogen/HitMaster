@@ -8,8 +8,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Renderer render;
     [SerializeField] private HealthBar healthBar;
     [SerializeField, Range(1, 100)] private float maxHealth;
-    public Heatlh Heatlh { get; private set; }
     public event Action<Enemy> Died;
+    public Heatlh Heatlh { get; private set; }
     private void Awake()
     {
         Heatlh = new Heatlh(maxHealth);
