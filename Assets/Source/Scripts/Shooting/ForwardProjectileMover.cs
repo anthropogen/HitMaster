@@ -6,8 +6,4 @@ public class ForwardProjectileMover : ProjectileMover
     protected override void ResetMover()
     {
     }
-
-    protected override void UpdateMovement()
-    {
-    }
 }

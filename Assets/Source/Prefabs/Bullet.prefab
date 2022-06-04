@@ -79,6 +79,7 @@ MonoBehaviour:
   iteractForce: 75
   damage: 2
   rb: {fileID: 1352754650029299785}
+  mover: {fileID: 804806939422801498}
 --- !u!114 &804806939422801498
 MonoBehaviour:
   m_ObjectHideFlags: 0

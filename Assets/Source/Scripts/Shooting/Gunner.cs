@@ -34,8 +34,8 @@ public class Gunner : MonoBehaviour
                 return;
             direction = point - gun.ShootPos;
             Quaternion rotation = Quaternion.LookRotation(direction);
-            factory.BulletPool.GetAt(gun.ShootPos, rotation);
-
+            var projectile = factory.BulletPool.GetAt(gun.ShootPos, rotation);
+            projectile.Init(point);
         }
     }
 }

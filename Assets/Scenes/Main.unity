@@ -808,7 +808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff53468ce0947a40ba62cc9e408cff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 1352754650029299784, guid: f30662a0e1bd4ba418425922e8f3ef0f, type: 3}
+  projectile: {fileID: 5874726635687448484, guid: c94e1b1443da1c740a9bb8b11b9f8c30, type: 3}
 --- !u!1 &826346709 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6373313876357985903, guid: e63313795e7262c41a349630d09081f6, type: 3}

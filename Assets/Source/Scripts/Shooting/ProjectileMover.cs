@@ -17,13 +17,16 @@ public abstract class ProjectileMover : MonoBehaviour
     private void Update()
     {
         if (deathTime < Time.time)
-            PathEnded?.Invoke();
-        UpdateMovement();
+            PathEndedInvoke();
     }
     private void FixedUpdate()
         => FixedUpdateMovement();
 
-    protected abstract void UpdateMovement();
     protected abstract void FixedUpdateMovement();
     protected abstract void ResetMover();
+    public virtual void Init(Vector3 point)
+    {
+    }
+    protected void PathEndedInvoke()
+        => PathEnded?.Invoke();
 }
