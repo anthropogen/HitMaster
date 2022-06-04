@@ -93,14 +93,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6665333024622596102}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 704c9eccff39bed49b72c653e7fa3b09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 4510727910753151306}
-  bulletTemplate: {fileID: 1352754650029299784, guid: f30662a0e1bd4ba418425922e8f3ef0f, type: 3}
+  factory: {fileID: 0}
   pointDistance: 20
+  maxShootAngle: 65
+  animator: {fileID: 1698641968}
+  eventReceiver: {fileID: 1181185657}
 --- !u!1001 &1966586315012753945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -262,6 +265,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1570853307780051976, guid: d2e878aad9e6a454b9311b628c859d83, type: 3}
   m_PrefabInstance: {fileID: 6665333023683729536}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1181185657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205362734853091235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2809ec99565579e45b52236c3cfcad37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1698641968
 MonoBehaviour:
   m_ObjectHideFlags: 0

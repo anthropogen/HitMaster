@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Gunner : MonoBehaviour
@@ -6,10 +7,24 @@ public class Gunner : MonoBehaviour
     [SerializeField] private GameFactory factory;
     [SerializeField, Range(0, 100)] float pointDistance;
     [SerializeField, Range(0, 180)] private float maxShootAngle;
+    [SerializeField] private PlayerAnimator animator;
+    [SerializeField] private AnimationEventReceiver eventReceiver;
     private Camera cam;
+    private Vector3 targetPoint;
+    public event Action<Projectile> InitedProjectile;
+    private void OnEnable()
+    {
+        eventReceiver.Shot += Shoot;
+    }
+    private void OnDisable()
+    {
+        eventReceiver.Shot -= Shoot;
+    }
     private void Start()
     {
         cam = Camera.main;
+        animator.SetAnimator(gun.AnimController);
+        InitedProjectile?.Invoke(gun.Projectile);
     }
 
     private void Update()
@@ -20,7 +35,6 @@ public class Gunner : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 point;
-            Vector3 direction;
             if (Physics.Raycast(ray, out hit))
             {
                 point = hit.point;
@@ -32,10 +46,16 @@ public class Gunner : MonoBehaviour
             var angle = Vector3.SignedAngle(point - transform.position, transform.forward, Vector3.up);
             if ((Mathf.Abs(angle)) > maxShootAngle)
                 return;
-            direction = point - gun.ShootPos;
-            Quaternion rotation = Quaternion.LookRotation(direction);
-            var projectile = factory.BulletPool.GetAt(gun.ShootPos, rotation);
-            projectile.Init(point);
+            targetPoint = point;
+            animator.Shoot();
         }
+    }
+
+    public void Shoot()
+    {
+        var direction = targetPoint - gun.ShootPos;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        var projectile = factory.BulletPool.GetAt(gun.ShootPos, rotation);
+        projectile.Init(targetPoint);
     }
 }

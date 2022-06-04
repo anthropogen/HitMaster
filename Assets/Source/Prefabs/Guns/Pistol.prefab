@@ -76,6 +76,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPosition: {fileID: 3432195532359574084}
+  <Projectile>k__BackingField: {fileID: 1352754650029299784, guid: f30662a0e1bd4ba418425922e8f3ef0f, type: 3}
+  <AnimController>k__BackingField: {fileID: 22100000, guid: 4323e64ead29dc94cab21cda3cf7bf0a, type: 2}
 --- !u!1001 &3836236989725089762
 PrefabInstance:
   m_ObjectHideFlags: 0
