@@ -23,9 +23,9 @@ public class Gunner : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
-        animator.SetAnimator(gun.AnimController);
-        InitedProjectile?.Invoke(gun.Projectile);
+        SetGunSetting();
     }
+
 
     private void Update()
     {
@@ -57,5 +57,15 @@ public class Gunner : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(direction);
         var projectile = factory.BulletPool.GetAt(gun.ShootPos, rotation);
         projectile.Init(targetPoint);
+    }
+    public void SetGun(Gun gun)
+    {
+        this.gun = gun;
+        SetGunSetting();
+    }
+    private void SetGunSetting()
+    {
+        animator.SetAnimator(gun.AnimController);
+        InitedProjectile?.Invoke(gun.Projectile);
     }
 }

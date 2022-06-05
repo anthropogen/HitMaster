@@ -22,7 +22,8 @@ public class BezierProjectileMover : ProjectileMover
             currentStep = Mathf.Min(currentStep + 1, stepsCount);
             targetPos = SetTargetPos();
         }
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.fixedDeltaTime);
+        var newPos = Vector3.MoveTowards(transform.position, targetPos, speed * Time.fixedDeltaTime);
+        rb.MovePosition(newPos);
     }
 
     protected override void ResetMover()
